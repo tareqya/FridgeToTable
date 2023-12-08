@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_IV_icon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_TF_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:layout_below="@id/login_IV_icon"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_TF_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_below="@id/login_TF_email"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:endIconMode="password_toggle"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        style="@style/Widget.Material3.Button.TextButton"
+        android:id="@+id/login_BTN_forgetPassword"
+        android:layout_below="@id/login_TF_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="forget your password ?"
+        android:layout_alignParentRight="true"
+        android:layout_marginHorizontal="20dp"
+        />
+    <Button
+        android:id="@+id/login_BTN_login"
+        android:layout_below="@id/login_BTN_forgetPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        />
+
+    <Button
+        android:id="@+id/login_BTN_signup"
+        android:layout_below="@id/login_BTN_login"
+        android:layout_centerHorizontal="true"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Create new account"
+        android:layout_marginTop="20dp"
+        />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/login_PB_loading"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        />
+</RelativeLayout>
