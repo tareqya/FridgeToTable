@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FridgeToTable"
         tools:targetApi="34">
         <activity
+            android:name=".home.RecipeDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".home.UpdateAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
         <activity
