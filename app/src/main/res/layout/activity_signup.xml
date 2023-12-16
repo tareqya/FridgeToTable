@@ -17,12 +17,30 @@
         android:textColor="@color/darkBlue"
         android:textStyle="bold"
         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_TF_fullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Full Name"
+        android:layout_below="@id/signup_TV_title"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/signup_TF_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_below="@id/signup_TV_title"
+        android:layout_below="@id/signup_TF_fullName"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         >

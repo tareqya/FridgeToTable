@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "900502489100",
+    "firebase_url": "https://fridgetotable-d8059-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fridgetotable-d8059",
+    "storage_bucket": "fridgetotable-d8059.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900502489100:android:5d1184b9ff98efe13c8629",
+        "android_client_info": {
+          "package_name": "com.example.fridgetotable"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk7cEt3z-gZYWylid4AG2ryt9tGJY5rqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
