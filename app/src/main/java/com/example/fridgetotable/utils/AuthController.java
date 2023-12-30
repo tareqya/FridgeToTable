@@ -32,14 +32,24 @@ public class AuthController {
     }
 
     public void loginUser(String email, String password) {
-
+        this.mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        authCallBack.onLoginComplete(task);
+                    }
+                });
     }
 
     public void resetPassword(String email){
-
+        this.mAuth.sendPasswordResetEmail(email);
     }
 
     public FirebaseUser getCurrentUser(){
         return this.mAuth.getCurrentUser();
+    }
+
+    public void logout(){
+        this.mAuth.signOut();
     }
 }

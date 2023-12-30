@@ -99,7 +99,7 @@
         android:text="Create account"
         />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+    <ProgressBar
         android:id="@+id/signup_PB_loading"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -108,4 +108,5 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         />
+
 </RelativeLayout>

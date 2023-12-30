@@ -5,4 +5,5 @@ import com.google.firebase.auth.AuthResult;
 
 public interface AuthCallBack {
     void onCreateAccountComplete(Task<AuthResult> task);
+    void onLoginComplete(Task<AuthResult> task);
 }
