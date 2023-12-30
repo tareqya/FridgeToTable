@@ -92,6 +92,11 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, error, Toast.LENGTH_SHORT).show();
                 }
             }
+
+            @Override
+            public void onFetchUserDataComplete(User user) {
+
+            }
         });
 
 
