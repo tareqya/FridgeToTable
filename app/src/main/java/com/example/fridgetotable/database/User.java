@@ -1,8 +1,11 @@
 package com.example.fridgetotable.database;
 
-import com.google.firebase.database.Exclude;
 
-public class User extends FirebaseKey {
+import com.google.firebase.firestore.Exclude;
+
+import java.io.Serializable;
+
+public class User extends FirebaseKey implements Serializable {
     private String name;
     private String email;
     private String imagePath;

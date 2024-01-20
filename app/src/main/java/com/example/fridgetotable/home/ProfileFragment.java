@@ -22,6 +22,7 @@ import com.example.fridgetotable.utils.StorageController;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
+    public static final String USER = "user";
     private Activity activity;
     private CircleImageView fProfile_IV_profileImage;
     private TextView fProfile_TV_name;
@@ -47,6 +48,7 @@ public class ProfileFragment extends Fragment {
         if(user.getImagePath() != null){
             // download image url
             String imageUrl = storageController.downloadImageUrl(user.getImagePath());
+            user.setImageUrl(imageUrl);
             // set image to user profile image
             Glide.with(activity).load(imageUrl).into(fProfile_IV_profileImage);
         }
@@ -78,6 +80,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 // go to edit account screen
                 Intent intent = new Intent(activity, UpdateAccountActivity.class);
+                intent.putExtra(USER, user);
                 startActivity(intent);
             }
         });

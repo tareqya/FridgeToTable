@@ -100,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         AuthController authController1 = new AuthController();
+
         if(authController1.getCurrentUser() != null ){
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);

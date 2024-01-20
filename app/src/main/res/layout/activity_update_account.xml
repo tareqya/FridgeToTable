@@ -65,7 +65,7 @@
 
 
     <Button
-        android:id="@+id/editAccount_BTN_createAccount"
+        android:id="@+id/editAccount_BTN_updateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="200dp"
@@ -75,14 +75,5 @@
         android:text="Update Account"
         />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/editAccount_PB_loading"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        />
 
 </RelativeLayout>

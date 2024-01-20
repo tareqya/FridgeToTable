@@ -1,8 +1,11 @@
 package com.example.fridgetotable.database;
 
-import com.google.firebase.database.Exclude;
 
-public class FirebaseKey {
+import com.google.firebase.firestore.Exclude;
+
+import java.io.Serializable;
+
+public class FirebaseKey implements Serializable {
     protected String key;
 
     public FirebaseKey(){}
