@@ -66,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initVars() {
-        homeFragment = new HomeFragment();
+        homeFragment = new HomeFragment(this);
         getSupportFragmentManager().beginTransaction().add(R.id.home_FL_home, homeFragment).commit();
 
         profileFragment = new ProfileFragment(this);
