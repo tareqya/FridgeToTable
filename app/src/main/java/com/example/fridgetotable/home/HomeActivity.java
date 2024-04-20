@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         profileFragment = new ProfileFragment(this);
         getSupportFragmentManager().beginTransaction().add(R.id.home_FL_profile, profileFragment).commit();
 
-        cookingFragment = new CookingFragment();
+        cookingFragment = new CookingFragment(this);
         getSupportFragmentManager().beginTransaction().add(R.id.home_FL_cooking, cookingFragment).commit();
 
         home_FL_home.setVisibility(View.VISIBLE);

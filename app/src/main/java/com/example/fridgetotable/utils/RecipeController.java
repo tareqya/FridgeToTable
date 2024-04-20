@@ -3,6 +3,7 @@ package com.example.fridgetotable.utils;
 import androidx.annotation.Nullable;
 
 import com.example.fridgetotable.callback.RecipeCallBack;
+import com.example.fridgetotable.database.Ingredient;
 import com.example.fridgetotable.database.Recipe;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
