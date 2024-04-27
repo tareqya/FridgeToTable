@@ -81,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String email = login_TF_email.getEditText().getText().toString();
+                if(email.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Email is required!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 authController.resetPassword(email);
             }
         });

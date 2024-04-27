@@ -30,6 +30,7 @@ public class RecipeController {
         this.db.collection(RECIPES_TABLE).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value == null) return;
                 ArrayList<Recipe> recipes = new ArrayList<>();
 
                 StorageController storageController = new StorageController();
@@ -50,6 +51,29 @@ public class RecipeController {
     }
 
     public void fetchRecipesWithIngredients(String[] ingredients){
+        this.db.collection(RECIPES_TABLE).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value == null) return;
+                ArrayList<Recipe> recipes = new ArrayList<>();
+                StorageController storageController = new StorageController();
+                for(DocumentSnapshot snapshot: value.getDocuments()){
+                    Recipe recipe = snapshot.toObject(Recipe.class);
 
+                    for(String ingredient: ingredients){
+                        if(recipe.getIngredients().contains(ingredient.toLowerCase())){
+                            String imageUrl = storageController.downloadImageUrl(recipe.getImagePath());
+                            recipe.setImageUrl(imageUrl);
+                            recipes.add(recipe);
+
+                            break;
+                        }
+                    }
+
+                }
+
+                recipeCallBack.onRecipesFetchComplete(recipes);
+            }
+        });
     }
 }

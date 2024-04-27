@@ -2,7 +2,9 @@ package com.example.fridgetotable.database;
 
 import com.google.firebase.firestore.Exclude;
 
-public class Ingredient extends FirebaseKey{
+import java.io.Serializable;
+
+public class Ingredient extends FirebaseKey implements Serializable {
     private String name;
     private String imagePath;
     private String imageUrl;

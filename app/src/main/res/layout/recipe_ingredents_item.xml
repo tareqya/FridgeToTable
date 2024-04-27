@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="200dp"
+    app:cardCornerRadius="20dp"
+    android:elevation="8dp"
+    app:cardElevation="8dp"
+    android:layout_margin="10dp"
+    android:minHeight="100dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/RI_IV_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/icon"
+            android:scaleType="fitXY"
+            />
+
+        <TextView
+            android:id="@+id/RI_TV_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Recipe name"
+            android:layout_below="@id/RI_IV_image"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:id="@+id/RI_LL_caloriesWrapper"
+            android:gravity="center_vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/RI_TV_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/RI_TV_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/calories"
+                android:layout_marginStart="5dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/RI_TV_missingIngredients"
+            android:textColor="#D5AE061D"
+            android:layout_below="@+id/RI_LL_caloriesWrapper"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

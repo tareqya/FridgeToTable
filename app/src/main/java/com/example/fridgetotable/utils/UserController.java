@@ -40,6 +40,7 @@ public class UserController {
         this.db.collection(USERS_TABLE).document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(value == null) return;
                 User user = value.toObject(User.class);
                 user.setKey(uid);
                 userCallBack.onFetchUserDataComplete(user);

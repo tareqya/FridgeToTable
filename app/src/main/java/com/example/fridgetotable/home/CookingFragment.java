@@ -1,6 +1,8 @@
 package com.example.fridgetotable.home;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.fridgetotable.R;
 import com.example.fridgetotable.adapter.IngredientAdapter;
@@ -87,7 +90,14 @@ public class CookingFragment extends Fragment {
         fCooking_BTN_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(selectedIngredients.size() == 0){
+                    Toast.makeText(context, "You must select an ingredients", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                Intent intent = new Intent((Activity) context, RecipesActivity.class );
+                intent.putExtra("selectedIngredients", selectedIngredients);
+                startActivity(intent);
             }
         });
     }
