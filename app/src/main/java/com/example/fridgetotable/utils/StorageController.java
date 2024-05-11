@@ -2,6 +2,11 @@ package com.example.fridgetotable.utils;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
+import com.example.fridgetotable.callback.ImageDownloadListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.UploadTask;
@@ -12,10 +17,21 @@ public class StorageController {
         this.storage = FirebaseStorage.getInstance();
     }
 
-    public String downloadImageUrl(String imagePath){
-        Task<Uri> downloadImageTask = storage.getReference().child(imagePath).getDownloadUrl();
-        while (!downloadImageTask.isComplete() && !downloadImageTask.isCanceled());
-        return downloadImageTask.getResult().toString();
+    public void downloadImageUrl(String imagePath, ImageDownloadListener imageDownloadListener){
+        storage.getReference().child(imagePath).getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageDownloadListener.onImageUrlDownloadSuccess(uri.toString());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        imageDownloadListener.onImageUrlDownloadFailed(e.getMessage());
+                    }
+                });
+
     }
 
     public boolean uploadImage(Uri imageUri, String imagePath){

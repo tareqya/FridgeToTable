@@ -23,10 +23,10 @@
         android:theme="@style/Theme.FridgeToTable"
         tools:targetApi="34">
         <activity
-            android:name=".home.RecipesActivity"
+            android:name=".home.RecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".home.RecipeDetailsActivity"
+            android:name=".home.RecipesActivity"
             android:exported="false" />
         <activity
             android:name=".home.UpdateAccountActivity"

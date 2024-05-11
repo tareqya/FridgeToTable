@@ -33,10 +33,26 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/fHome_CB_fav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fHome_TF_search"
+        android:text="Favorites"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fHome_RV_recipes"
-        android:layout_below="@id/fHome_TF_search"
+        android:layout_below="@id/fHome_CB_fav"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/fHome_PB_loading"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        />
 </RelativeLayout>

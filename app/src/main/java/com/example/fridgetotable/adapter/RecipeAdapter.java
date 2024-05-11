@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.fridgetotable.R;
+import com.example.fridgetotable.callback.RecipeListener;
 import com.example.fridgetotable.database.Recipe;
 
 import java.util.ArrayList;
@@ -19,10 +20,15 @@ import java.util.ArrayList;
 public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private ArrayList<Recipe> recipes;
     private Context context;
+    private RecipeListener recipeListener;
 
     public RecipeAdapter(Context context, ArrayList<Recipe> recipes){
         this.context = context;
         this.recipes = recipes;
+    }
+
+    public void  setRecipeListener(RecipeListener recipeListener){
+        this.recipeListener = recipeListener;
     }
 
     @NonNull
@@ -61,6 +67,16 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             recipe_IV_image = itemView.findViewById(R.id.recipe_IV_image);
             recipe_TV_name = itemView.findViewById(R.id.recipe_TV_name);
             recipe_TV_calories = itemView.findViewById(R.id.recipe_TV_calories);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    Recipe recipe = getItem(pos);
+
+                    recipeListener.onClick(recipe);
+                }
+            });
         }
     }
 }

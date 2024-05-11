@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.fridgetotable.R;
 import com.example.fridgetotable.auth.LoginActivity;
+import com.example.fridgetotable.callback.ImageDownloadListener;
 import com.example.fridgetotable.database.User;
 import com.example.fridgetotable.utils.AuthController;
 import com.example.fridgetotable.utils.StorageController;
@@ -47,10 +48,19 @@ public class ProfileFragment extends Fragment {
         fProfile_TV_name.setText(user.getName());
         if(user.getImagePath() != null){
             // download image url
-            String imageUrl = storageController.downloadImageUrl(user.getImagePath());
-            user.setImageUrl(imageUrl);
-            // set image to user profile image
-            Glide.with(activity).load(imageUrl).into(fProfile_IV_profileImage);
+            storageController.downloadImageUrl(user.getImagePath(), new ImageDownloadListener() {
+                @Override
+                public void onImageUrlDownloadSuccess(String imageUrl) {
+                    user.setImageUrl(imageUrl);
+                    // set image to user profile image
+                    Glide.with(activity).load(imageUrl).into(fProfile_IV_profileImage);
+                }
+                @Override
+                public void onImageUrlDownloadFailed(String errorMessage) {
+
+                }
+            });
+
         }
     }
 

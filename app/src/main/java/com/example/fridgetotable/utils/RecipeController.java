@@ -2,6 +2,7 @@ package com.example.fridgetotable.utils;
 
 import androidx.annotation.Nullable;
 
+import com.example.fridgetotable.callback.ImageDownloadListener;
 import com.example.fridgetotable.callback.RecipeCallBack;
 import com.example.fridgetotable.database.Ingredient;
 import com.example.fridgetotable.database.Recipe;
@@ -12,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RecipeController {
     public static final String RECIPES_TABLE = "Recipes";
@@ -32,20 +34,33 @@ public class RecipeController {
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(value == null) return;
                 ArrayList<Recipe> recipes = new ArrayList<>();
-
+                AtomicInteger count = new AtomicInteger(value.size() - 1);
                 StorageController storageController = new StorageController();
                 for(DocumentSnapshot snapshot: value.getDocuments()){
                     Recipe recipe = snapshot.toObject(Recipe.class);
                     recipe.setKey(snapshot.getId());
                     if(recipe.getImagePath() != null){
-                        String imageUrl = storageController.downloadImageUrl(recipe.getImagePath());
-                        recipe.setImageUrl(imageUrl);
+                        storageController.downloadImageUrl(recipe.getImagePath(), new ImageDownloadListener() {
+                            @Override
+                            public void onImageUrlDownloadSuccess(String imageUrl) {
+                                recipe.setImageUrl(imageUrl);
+                                recipes.add(recipe);
+                                if(count.getAndDecrement() == 0)
+                                    recipeCallBack.onRecipesFetchComplete(recipes);
+                            }
+
+                            @Override
+                            public void onImageUrlDownloadFailed(String errorMessage) {
+
+                            }
+                        });
+
+                    }else {
+                        recipes.add(recipe);
+                        if(count.getAndDecrement() == 0)
+                            recipeCallBack.onRecipesFetchComplete(recipes);
                     }
-
-                    recipes.add(recipe);
                 }
-
-                recipeCallBack.onRecipesFetchComplete(recipes);
             }
         });
     }
@@ -62,17 +77,26 @@ public class RecipeController {
 
                     for(String ingredient: ingredients){
                         if(recipe.getIngredients().contains(ingredient.toLowerCase())){
-                            String imageUrl = storageController.downloadImageUrl(recipe.getImagePath());
-                            recipe.setImageUrl(imageUrl);
-                            recipes.add(recipe);
+                            storageController.downloadImageUrl(recipe.getImagePath(), new ImageDownloadListener() {
+                                @Override
+                                public void onImageUrlDownloadSuccess(String imageUrl) {
+                                    recipe.setImageUrl(imageUrl);
+                                    recipes.add(recipe);
+                                    recipeCallBack.onRecipesFetchComplete(recipes);
+                                }
 
+                                @Override
+                                public void onImageUrlDownloadFailed(String errorMessage) {
+
+                                }
+                            });
                             break;
                         }
                     }
 
                 }
 
-                recipeCallBack.onRecipesFetchComplete(recipes);
+
             }
         });
     }

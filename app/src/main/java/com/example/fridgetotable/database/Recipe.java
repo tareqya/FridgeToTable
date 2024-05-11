@@ -2,15 +2,17 @@ package com.example.fridgetotable.database;
 
 import com.google.firebase.firestore.Exclude;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Recipe extends FirebaseKey{
+public class Recipe extends FirebaseKey implements Serializable {
 
     private String name;
     private String imagePath;
     private String imageUrl;
     private ArrayList<String> ingredients;
     private int calories;
+    private String description;
 
 
     public Recipe() {}
@@ -57,6 +59,15 @@ public class Recipe extends FirebaseKey{
 
     public Recipe setCalories(int calories) {
         this.calories = calories;
+        return this;
+    }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public Recipe setDescription(String description){
+        this.description = description;
         return this;
     }
 }

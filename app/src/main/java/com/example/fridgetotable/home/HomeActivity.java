@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onFetchUserDataComplete(User user) {
                 profileFragment.setUser(user);
+                homeFragment.setUser(user);
             }
         });
 

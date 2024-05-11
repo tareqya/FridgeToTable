@@ -9,12 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 
 import com.example.fridgetotable.R;
 import com.example.fridgetotable.adapter.RecipeAdapter;
-import com.example.fridgetotable.adapter.RecipeIngredientsAdapter;
 import com.example.fridgetotable.callback.RecipeCallBack;
+import com.example.fridgetotable.callback.RecipeListener;
 import com.example.fridgetotable.database.Ingredient;
 import com.example.fridgetotable.database.Recipe;
 import com.example.fridgetotable.utils.RecipeController;
@@ -55,7 +54,13 @@ public class RecipesActivity extends AppCompatActivity {
             public void onRecipesFetchComplete(ArrayList<Recipe> recipes) {
                 allRecipes = recipes;
                 String[] ingredients = getIngredientsNames();
-                RecipeIngredientsAdapter recipeAdapter = new RecipeIngredientsAdapter(recipes,RecipesActivity.this, ingredients);
+                RecipeAdapter recipeAdapter = new RecipeAdapter(RecipesActivity.this, recipes);
+                recipeAdapter.setRecipeListener(new RecipeListener() {
+                    @Override
+                    public void onClick(Recipe recipe) {
+                        openRecipeScreen(recipe, ingredients);
+                    }
+                });
                 recipes_RV_recipes.setLayoutManager(new GridLayoutManager(RecipesActivity.this, 2));
                 recipes_RV_recipes.setHasFixedSize(true);
                 recipes_RV_recipes.setItemAnimator(new DefaultItemAnimator());
@@ -83,7 +88,13 @@ public class RecipesActivity extends AppCompatActivity {
                 }
 
                 String[] ingredients = getIngredientsNames();
-                RecipeIngredientsAdapter recipeAdapter = new RecipeIngredientsAdapter(recipes,RecipesActivity.this, ingredients);
+                RecipeAdapter recipeAdapter = new RecipeAdapter(RecipesActivity.this, recipes);
+                recipeAdapter.setRecipeListener(new RecipeListener() {
+                    @Override
+                    public void onClick(Recipe recipe) {
+                        openRecipeScreen(recipe, ingredients);
+                    }
+                });
                 recipes_RV_recipes.setLayoutManager(new GridLayoutManager(RecipesActivity.this, 2));
                 recipes_RV_recipes.setHasFixedSize(true);
                 recipes_RV_recipes.setItemAnimator(new DefaultItemAnimator());
@@ -98,6 +109,13 @@ public class RecipesActivity extends AppCompatActivity {
 
         String[] ingredients = getIngredientsNames();
         recipeController.fetchRecipesWithIngredients(ingredients);
+    }
+
+    private void openRecipeScreen(Recipe recipe,  String[] ingredients) {
+        Intent intent = new Intent(this, RecipeActivity.class);
+        intent.putExtra("RECIPE", recipe);
+        intent.putExtra("INGREDIENTS", ingredients);
+        startActivity(intent);
     }
 
     private String[] getIngredientsNames(){
